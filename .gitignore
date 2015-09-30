@@ -1,0 +1,15 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+/gradle
+build.gradle
+gradle.properties
+gradlew
+gradlew.bat
+settings.gradle
+.idea/
+WalletGuard.iml

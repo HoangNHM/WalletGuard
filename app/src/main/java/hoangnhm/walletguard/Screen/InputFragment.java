@@ -1,14 +1,19 @@
 package hoangnhm.walletguard.Screen;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
 
 import hoangnhm.walletguard.R;
+import hoangnhm.walletguard.Screen.DatePickerDialog.DatePickerFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +23,9 @@ import hoangnhm.walletguard.R;
  * Use the {@link InputFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InputFragment extends Fragment {
+public class InputFragment extends Fragment implements View.OnClickListener {
+
+    private Button mBtnDatePicker;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -66,6 +73,8 @@ public class InputFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_input, container, false);
+        mBtnDatePicker = (Button) v.findViewById(R.id.mBtnDatePicker);
+        mBtnDatePicker.setOnClickListener(this);
         return v;
     }
 
@@ -92,6 +101,24 @@ public class InputFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.mBtnDatePicker:
+                DialogFragment datePickerFm = DatePickerFragment.newInstance(mOndateSetListener);
+                datePickerFm.show(getFragmentManager(), "Date picker");
+                break;
+        }
+    }
+
+    private DatePickerDialog.OnDateSetListener mOndateSetListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            mBtnDatePicker.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+        }
+    };
 
     /**
      * This interface must be implemented by activities that contain this
