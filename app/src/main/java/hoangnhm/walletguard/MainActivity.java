@@ -8,19 +8,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
+import hoangnhm.walletguard.Screen.AddFragment;
 import hoangnhm.walletguard.Screen.HomeFragment;
-import hoangnhm.walletguard.Screen.InputFragment;
-import hoangnhm.walletguard.Screen.ListFragment;
+import hoangnhm.walletguard.Screen.HistoryFragment;
 
 public class MainActivity extends AppCompatActivity
 implements HomeFragment.OnHomeFmInteractionListener,
-        ListFragment.OnListFmInteractionListener,
-        InputFragment.OnInputFmInteractionListener{
+        HistoryFragment.OnListFmInteractionListener,
+        AddFragment.OnInputFmInteractionListener{
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -29,7 +27,7 @@ implements HomeFragment.OnHomeFmInteractionListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Hide the status bar.
-        hideStatusBar();
+//        hideStatusBar();
         // Show Home Page
         showHomePage();
     }
@@ -74,10 +72,10 @@ implements HomeFragment.OnHomeFmInteractionListener,
 
         switch (btnId) {
             case R.id.mBtnInput:
-                newFragment = new InputFragment();
+                newFragment = new AddFragment();
                 break;
             case R.id.mBtnList:
-                newFragment = new ListFragment();
+                newFragment = new HistoryFragment();
                 break;
         }
 

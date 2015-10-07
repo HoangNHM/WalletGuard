@@ -5,8 +5,10 @@
     <string name="action_settings">Settings</string>
 
 <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="Time">Time</string>
+    <string name="Date">Date</string>
     <string name="Type">Type</string>
-    <string name="Quantum">Quantum</string>
+    <string name="Amount">Amount</string>
+    <string name="Add">Add</string>
+    <string name="Delete">Delete</string>
+    <string name="Numero">No. </string>
 </resources>

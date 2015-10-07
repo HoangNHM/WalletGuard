@@ -7,30 +7,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import hoangnhm.walletguard.Account.AccountContent;
 import hoangnhm.walletguard.R;
-import hoangnhm.walletguard.Screen.CustomList.CustomListAdapter;
+import hoangnhm.walletguard.Screen.custom.HistoryAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link OnListFmInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ListFragment#newInstance} factory method to
+ * Use the {@link HistoryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ListFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class HistoryFragment extends Fragment implements AdapterView.OnItemClickListener {
 
-    private CustomListAdapter mAdapter;
+    private HistoryAdapter mAdapter;
     private ListView mListView;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -50,11 +46,11 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ListFragment.
+     * @return A new instance of fragment HistoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListFragment newInstance(String param1, String param2) {
-        ListFragment fragment = new ListFragment();
+    public static HistoryFragment newInstance(String param1, String param2) {
+        HistoryFragment fragment = new HistoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,7 +58,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
         return fragment;
     }
 
-    public ListFragment() {
+    public HistoryFragment() {
         // Required empty public constructor
     }
 
@@ -76,15 +72,15 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
 
         ArrayList<AccountContent.AccountItem> arr = new ArrayList<AccountContent.AccountItem>();
         arr.add(new AccountContent.AccountItem(0, 100, "30/09/2015", 1));
-        mAdapter = new CustomListAdapter(getActivity(), AccountContent.ITEMS);
-        //mAdapter = new CustomListAdapter(getActivity(), arr);
+        mAdapter = new HistoryAdapter(getActivity(), AccountContent.ITEMS);
+        //mAdapter = new HistoryAdapter(getActivity(), arr);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_history, container, false);
         // Set the adapter
         mListView = (ListView) v.findViewById(R.id.mListView);
         mListView.setAdapter(mAdapter);

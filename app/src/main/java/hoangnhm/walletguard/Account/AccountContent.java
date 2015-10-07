@@ -29,13 +29,13 @@ public class AccountContent {
 
     public static class AccountItem {
         public int mId;
-        public int mQuantum;
+        public int mAmount;
         public String mTime;
         public int mType;
 
-        public AccountItem(int mId, int mQuantum, String mTime, int mType) {
+        public AccountItem(int mId, int mAmount, String mTime, int mType) {
             this.mId = mId;
-            this.mQuantum = mQuantum;
+            this.mAmount = mAmount;
             this.mTime = mTime;
             this.mType = mType;
         }

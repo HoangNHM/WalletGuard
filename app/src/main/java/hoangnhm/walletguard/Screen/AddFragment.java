@@ -4,28 +4,31 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import hoangnhm.walletguard.Account.AccountContent;
 import hoangnhm.walletguard.R;
-import hoangnhm.walletguard.Screen.DatePickerDialog.DatePickerFragment;
+import hoangnhm.walletguard.Screen.custom.AddAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link OnInputFmInteractionListener} interface
  * to handle interaction events.
- * Use the {@link InputFragment#newInstance} factory method to
+ * Use the {@link AddFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InputFragment extends Fragment implements View.OnClickListener {
+public class AddFragment extends Fragment {
 
-    private Button mBtnDatePicker;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -43,11 +46,11 @@ public class InputFragment extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment InputFragment.
+     * @return A new instance of fragment AddFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static InputFragment newInstance(String param1, String param2) {
-        InputFragment fragment = new InputFragment();
+    public static AddFragment newInstance(String param1, String param2) {
+        AddFragment fragment = new AddFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -55,7 +58,7 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         return fragment;
     }
 
-    public InputFragment() {
+    public AddFragment() {
         // Required empty public constructor
     }
 
@@ -72,10 +75,36 @@ public class InputFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_input, container, false);
-        mBtnDatePicker = (Button) v.findViewById(R.id.mBtnDatePicker);
-        mBtnDatePicker.setOnClickListener(this);
-        return v;
+        View view = inflater.inflate(R.layout.fragment_add, container, false);
+        Calendar calendar = Calendar.getInstance();
+        int date = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH) + 1; // correct month
+        int year = calendar.get(Calendar.YEAR);
+        String strDate = date + "/" + month + "/" + year;
+
+        // set listView, btn Add
+        setContainView(view, strDate);
+        return view;
+    }
+
+    private void setContainView(View view, final String strDate) {
+        // listView
+        final ListView listView = (ListView) view.findViewById(R.id.listAdd);
+        final ArrayList<AccountContent.AccountItem> arr = new ArrayList<AccountContent.AccountItem>();
+        arr.add(new AccountContent.AccountItem(arr.size(), 0, strDate, 1));
+        final AddAdapter adapter = new AddAdapter(getActivity(),getFragmentManager(), arr);
+        listView.setAdapter(adapter);
+
+        //btn Add
+        Button btnAdd = (Button) view.findViewById(R.id.btnAdd);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                arr.add(new AccountContent.AccountItem(arr.size(), 0, strDate, 1));
+                adapter.notifyDataSetChanged();
+                listView.smoothScrollToPosition(listView.getBottom());
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -102,21 +131,9 @@ public class InputFragment extends Fragment implements View.OnClickListener {
         mListener = null;
     }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.mBtnDatePicker:
-                DialogFragment datePickerFm = DatePickerFragment.newInstance(mOndateSetListener);
-                datePickerFm.show(getFragmentManager(), "Date picker");
-                break;
-        }
-    }
-
     private DatePickerDialog.OnDateSetListener mOndateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            mBtnDatePicker.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
         }
     };
 

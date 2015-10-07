@@ -1,12 +1,10 @@
-package hoangnhm.walletguard.Screen.DatePickerDialog;
+package hoangnhm.walletguard.Screen.datePickerDlg;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.widget.DatePicker;
 
 import java.util.Calendar;
 
@@ -19,7 +17,7 @@ public class DatePickerFragment extends DialogFragment {
 
     public static DatePickerFragment newInstance(DatePickerDialog.OnDateSetListener onDateSetListener) {
         DatePickerFragment fm = new DatePickerFragment();
-        fm.setOnPickerListener(onDateSetListener);
+        fm.mListener = onDateSetListener;
         return fm;
     }
 
@@ -32,9 +30,4 @@ public class DatePickerFragment extends DialogFragment {
         int year = c.get(Calendar.YEAR);
         return new DatePickerDialog(getActivity(), mListener, year, month, date);
     }
-
-    private void setOnPickerListener(DatePickerDialog.OnDateSetListener onDateSetListener) {
-        this.mListener = onDateSetListener;
-    }
-
 }

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText">
+
+    <!--Button Delete-->
+    <Button
+        android:id="@+id/btnDel"
+        android:text="@string/Delete"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="RelativeOverlap" />
+
+    <!--Anchor-->
+    <View
+        android:id="@+id/anchor"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tvNumero"
+        android:layout_toEndOf="@id/tvNumero"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <!--Numero-->
+    <TextView
+        android:id="@id/tvNumero"
+        android:text="No."
+        android:minEms="5"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBaseline="@id/btnDel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--Date-->
+    <TextView
+        android:id="@+id/tvDate"
+        android:text="@string/Date"
+        android:layout_below="@id/btnDel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignBaseline="@+id/btnDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--Picker Date-->
+    <Button
+        android:id="@id/btnDatePicker"
+        android:layout_below="@id/btnDel"
+        android:layout_toRightOf="@id/anchor"
+        android:layout_toEndOf="@id/anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--Amount-->
+    <TextView
+        android:id="@+id/tvAmount"
+        android:text="Amount"
+        android:layout_alignBaseline="@+id/etAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--Amount input-->
+    <EditText
+        android:id="@id/etAmount"
+        android:layout_below="@id/btnDatePicker"
+        android:layout_toRightOf="@id/anchor"
+        android:layout_toEndOf="@id/anchor"
+        android:inputType="numberDecimal"
+        android:maxLength="12"
+        android:minEms="8"
+        android:gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/rgCollectSpend"
+        android:layout_below="@id/etAmount"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbCollect"
+            android:background="@drawable/selector_collect_spend"
+            android:button="@null"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <RadioButton
+            android:id="@+id/rbSpend"
+            android:background="@drawable/selector_collect_spend"
+            android:button="@null"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+    </RadioGroup>
+
+</RelativeLayout>

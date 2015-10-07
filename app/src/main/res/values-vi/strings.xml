@@ -6,8 +6,10 @@
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="Time">Thời gian</string>
+    <string name="Date">Ngày</string>
     <string name="Type">Loại</string>
-    <string name="Quantum">Số lượng</string>
+    <string name="Amount">Số lượng</string>
+    <string name="Add">Thêm</string>
+    <string name="Delete">Xóa</string>
+    <string name="Numero">No. </string>
 </resources>
